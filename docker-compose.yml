@@ -35,7 +35,7 @@ services:
       - CHOKIDAR_USEPOLLING=true  # Reactのライブリロード対策（Macで有効）
     volumes:
       - ./frontend:/app
-      - /app/node_modules. # ここだけはDocker内に閉じておく
+      - /app/node_modules # ここだけはDocker内に閉じておく
 
 
 volumes:
