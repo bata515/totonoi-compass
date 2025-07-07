@@ -11,7 +11,7 @@ import com.example.springapp.domain.irepositoryinterface.IUserRepositoryInterfac
 
 // CustomUserDetailsServiceは、Spring SecurityのUserDetailsServiceを実装し、ユーザー情報を取得し、認証を行います。
 @Service
-public class UserAuthenticationService implements UserDetailsService {
+public class CustomUserDetailsService implements UserDetailsService {
 
     @Autowired
     private IUserRepositoryInterface userRepository;
@@ -24,8 +24,7 @@ public class UserAuthenticationService implements UserDetailsService {
 
         return User.builder()
                 .username(user.getMail())
-                .password(user.getPassword()) // パスワードはエンコード済みである必要があります
-                .roles("USER") // 権限を設定
+                .password(user.getPassword()) // 暗号化されたパスワードを使用
                 .build();
     }
 }
