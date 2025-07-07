@@ -1,10 +1,10 @@
-package com.example.springapp.domain.users.irepositoryinterface;
+package com.example.springapp.domain.irepositoryinterface;
 
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
-import com.example.springapp.domain.users.domainobject.User;
+import com.example.springapp.domain.domainobject.User;
 
 public interface IUserRepositoryInterface {
 

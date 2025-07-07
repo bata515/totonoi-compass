@@ -5,8 +5,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.example.springapp.application.users.viewmodel.UserViewModel;
-import com.example.springapp.domain.users.domainobject.User;
-import com.example.springapp.domain.users.irepositoryinterface.IUserRepositoryInterface;
+import com.example.springapp.domain.domainobject.User;
+import com.example.springapp.domain.irepositoryinterface.IUserRepositoryInterface;
 
 import java.util.UUID;
 

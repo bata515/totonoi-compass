@@ -7,7 +7,7 @@ import lombok.*;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
-import com.example.springapp.domain.users.domainobject.Sauna;
+import com.example.springapp.domain.domainobject.Sauna;
 
 @Entity
 @Table(name = "saunas")

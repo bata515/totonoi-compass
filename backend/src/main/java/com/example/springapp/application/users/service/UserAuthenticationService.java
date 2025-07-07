@@ -7,7 +7,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import com.example.springapp.domain.users.irepositoryinterface.IUserRepositoryInterface;
+import com.example.springapp.domain.irepositoryinterface.IUserRepositoryInterface;
 
 // CustomUserDetailsServiceは、Spring SecurityのUserDetailsServiceを実装し、ユーザー情報を取得し、認証を行います。
 @Service
@@ -19,7 +19,7 @@ public class UserAuthenticationService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        com.example.springapp.domain.users.domainobject.User user = userRepository.findByMail(username)
+        com.example.springapp.domain.domainobject.User user = userRepository.findByMail(username)
                 .orElseThrow(() -> new UsernameNotFoundException("User not found with email: " + username));
 
         return User.builder()

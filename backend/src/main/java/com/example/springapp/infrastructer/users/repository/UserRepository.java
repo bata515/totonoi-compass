@@ -3,8 +3,8 @@ package com.example.springapp.infrastructer.users.repository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.example.springapp.domain.users.domainobject.User;
-import com.example.springapp.domain.users.irepositoryinterface.IUserRepositoryInterface;
+import com.example.springapp.domain.domainobject.User;
+import com.example.springapp.domain.irepositoryinterface.IUserRepositoryInterface;
 import com.example.springapp.infrastructer.users.dbmodel.UserDbModel;
 import com.example.springapp.infrastructer.users.jparepository.IUserJpaRepository;
 

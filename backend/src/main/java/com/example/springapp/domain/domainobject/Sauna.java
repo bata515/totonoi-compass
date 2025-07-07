@@ -1,4 +1,4 @@
-package com.example.springapp.domain.users.domainobject;
+package com.example.springapp.domain.domainobject;
 
 import lombok.EqualsAndHashCode;
 import lombok.Getter;

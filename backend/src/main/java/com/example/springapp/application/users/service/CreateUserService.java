@@ -5,8 +5,8 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.example.springapp.application.users.bodymodel.CreateUserBodyModel;
-import com.example.springapp.domain.users.domainobject.User;
-import com.example.springapp.domain.users.irepositoryinterface.IUserRepositoryInterface;
+import com.example.springapp.domain.domainobject.User;
+import com.example.springapp.domain.irepositoryinterface.IUserRepositoryInterface;
 
 import java.time.LocalDateTime;
 import java.util.UUID;
