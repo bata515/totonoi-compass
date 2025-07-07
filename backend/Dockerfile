@@ -11,7 +11,8 @@ COPY . /app
 RUN ./mvnw clean package -DskipTests
 
 # Spring Boot アプリケーションが使うポート
-EXPOSE 8080
+ENV JAVA_TOOL_OPTIONS="-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:5005"
+EXPOSE 8080 5005
 
 # アプリの起動コマンド
 CMD ["java", "-jar", "target/demoapp-0.0.1-SNAPSHOT.jar"]
