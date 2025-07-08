@@ -1,5 +1,6 @@
 package com.example.springapp.application.users.controller;
 
+import com.example.springapp.application.users.bodymodel.CreateUserBodyModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -30,7 +31,8 @@ public class LoginController {
      * @return register.htmlテンプレートを返す
      */
     @GetMapping("/register")
-    public String showRegistrationPage() {
+    public String showRegistrationPage(Model model) {
+        model.addAttribute("createUserBodyModel", new CreateUserBodyModel());
         return "register";
     }
 

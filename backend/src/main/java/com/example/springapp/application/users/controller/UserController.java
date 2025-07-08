@@ -3,6 +3,8 @@ package com.example.springapp.application.users.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import com.example.springapp.application.users.bodymodel.CreateUserBodyModel;
@@ -12,26 +14,21 @@ import com.example.springapp.application.users.viewmodel.UserViewModel;
 
 import java.util.UUID;
 
-@RestController
+@Controller
 @RequestMapping("/users")
 public class UserController {
     @Autowired
-    ReadUserService readUserService;
-    @Autowired
     CreateUserService createUserService;
 
-    @GetMapping("/read/{id}")
-    public UserViewModel findUserById(@PathVariable("id") UUID id) {
-        return this.readUserService.readUserById(id);
+    @GetMapping("/signup")
+    public String showSignUpPage(Model model) {
+        model.addAttribute("createUserBodyModel", new CreateUserBodyModel());
+        return "signup";
     }
 
     @PostMapping("/create")
-    public ResponseEntity<String> createUser(@RequestBody CreateUserBodyModel createUserBodyModel) {
-        try {
-            createUserService.createUser(createUserBodyModel);
-            return ResponseEntity.ok("User registered successfully");
-        } catch (IllegalArgumentException e) {
-            return ResponseEntity.status(HttpStatus.CONFLICT).body(e.getMessage());
-        }
+    public String createUser(@ModelAttribute("createUserBodyModel") CreateUserBodyModel createUserBodyModel) {
+        createUserService.createUser(createUserBodyModel);
+        return "redirect:/login"; // 登録後はログインページへリダイレクト
     }
 }
