@@ -1,42 +1,54 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
-<head>
-  <meta charset="UTF-8">
-  <title>User Registration</title>
-</head>
-<body>
-<h2>User Registration</h2>
+<html lang="ja"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
 
-<form th:action="@{/users/create}" method="post" th:object="${createUserBodyModel}">
-  <div>
-    <label for="familyName">Family Name:</label>
-    <input type="text" id="familyName" th:field="*{familyName}" required>
-  </div>
-  <div>
-    <label for="familyNameRuby">Family Name Ruby:</label>
-    <input type="text" id="familyNameRuby" th:field="*{familyNameRuby}">
-  </div>
-  <div>
-    <label for="firstName">First Name:</label>
-    <input type="text" id="firstName" th:field="*{firstName}" required>
-  </div>
-  <div>
-    <label for="firstNameRuby">First Name Ruby:</label>
-    <input type="text" id="firstNameRuby" th:field="*{firstNameRuby}">
-  </div>
-  <div>
-    <label for="mail">Email:</label>
-    <input type="email" id="mail" th:field="*{mail}" required>
-  </div>
-  <div>
-    <label for="password">Password:</label>
-    <input type="password" id="password" th:field="*{password}" required>
-  </div>
-  <button type="submit">Register</button>
-</form>
+<div layout:fragment="content">
+  <h2>新規登録</h2>
 
-<p>
-  Already have an account? <a th:href="@{/login}">Login</a>
-</p>
-</body>
+  <form th:action="@{/users/create}" method="post" th:object="${createUserBodyModel}">
+    <div>
+      <label>姓:
+        <input type="text" th:field="*{familyName}" required>
+      </label>
+    </div>
+
+    <div>
+      <label>姓（ふりがな）:
+        <input type="text" th:field="*{familyNameRuby}" required>
+      </label>
+    </div>
+
+    <div>
+      <label>名:
+        <input type="text" th:field="*{firstName}" required>
+      </label>
+    </div>
+
+    <div>
+      <label>名（ふりがな）:
+        <input type="text" th:field="*{firstNameRuby}" required>
+      </label>
+    </div>
+
+    <div>
+      <label>メールアドレス:
+        <input type="email" th:field="*{mail}" required>
+      </label>
+    </div>
+
+    <div>
+      <label>パスワード:
+        <input type="password" th:field="*{password}" required>
+      </label>
+    </div>
+
+    <button type="submit">登録</button>
+  </form>
+
+  <p>すでにサウナ〜の方は
+    <a th:href="@{/login}">ログイン</a>
+  </p>
+</div>
 </html>

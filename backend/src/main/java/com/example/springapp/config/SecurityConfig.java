@@ -29,7 +29,10 @@ public class SecurityConfig {
                         .permitAll()  // ログインページは認証なしで許可します
                 )
                 .logout(logout -> logout
-                        .logoutUrl("/logout")  // ログアウトURL
+                        .logoutUrl("/logout")
+                        .logoutSuccessUrl("/login?logout")  // ← ログアウト後のリダイレクト先を設定
+                        .invalidateHttpSession(true)        // セッション無効化（必須）
+                        .deleteCookies("JSESSIONID")        // Cookie削除（セッション情報）
                         .permitAll()
                 );
         return http.build();

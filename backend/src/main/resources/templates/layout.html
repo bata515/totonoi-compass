@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="UTF-8">
+  <title th:text="${title}">Sauna Fortune</title>
+  <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+<header>
+  <h1><a th:href="@{/fortune}">サウナ占い</a></h1>
+  <nav th:if="${#authorization.expression('isAuthenticated()')}">
+    <a th:href="@{/saunas}">サウナ一覧</a> |
+    <form th:action="@{/logout}" method="post" style="display:inline;">
+      <button type="submit" style="background:none; border:none; color:blue; cursor:pointer; text-decoration:underline;">
+        ログアウト
+      </button>
+    </form>
+  </nav>
+</header>
+
+<main>
+  <div layout:fragment="content"></div>
+</main>
+
+<footer>
+  <p>&copy; 2025 サウナ占いアプリ</p>
+</footer>
+</body>
+</html>
