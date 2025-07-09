@@ -51,15 +51,15 @@ CREATE TABLE users (
 ```sql
 CREATE TABLE saunas (
   id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
-  users_id UUID NOT NULL,
+  user_mail TEXT NOT NULL,
   name TEXT NOT NULL,
   url TEXT,
   visited BOOLEAN DEFAULT false,
   created TIMESTAMP DEFAULT NOW(),
   modified TIMESTAMP DEFAULT NOW(),
-  CONSTRAINT saunas_users_id_fkey
-    FOREIGN KEY (users_id)
-    REFERENCES users(id)
+  CONSTRAINT saunas_users_mail_fkey
+    FOREIGN KEY (user_mail)
+    REFERENCES users(mail)
     ON DELETE CASCADE
 );
 ```
@@ -70,13 +70,13 @@ Thymeleafをビューとして使用するクラシカルなWebアプリケー�
 ### 認証不要
 | 画面名     | URL (GET) | URL (POST)                 | Controllerメソッド（例）                               | Thymeleafテンプレート | 概要                                     |
 | ---------- | --------- | -------------------------- | ------------------------------------------------------ | ------------------- | ---------------------------------------- |
-| 新規登録画面 | `/users/signup` | `/users/signup`                  | `UserController#signUpPage`, `UserController#createUser`     | `signup.html`       | 新規ユーザー登録を行う                     |
+| 新規登録画面 | `/users/signup` | `/users/signup`                  | `UserController#readSignUpPage`, `UserController#createUser`     | `signup.html`       | 新規ユーザー登録を行う                     |
 | ログイン画面 | `/login`  | `/login` (Spring Security) | `LoginController#loginPage`                                 | `login.html`        | ログインフォームを提供（処理はSpring Security） |
 
 ### 要認証
 | 画面名         | URL (GET)                      | URL (POST)                         | Controllerメソッド（例）                                     | Thymeleafテンプレート        | 概要                                     |
 | -------------- | ------------------------------ | ---------------------------------- | ------------------------------------------------------------ | ---------------------------- | ---------------------------------------- |
-| 占い画面       | `/fortune`                     | `/fortune/result`                  | `FortuneController#fortune`, `FortuneController#result`      | `fortune.html`, `result.html`| 占い機能を提供する（ログイン後のトップページ） |
+| 占い画面       | `/fortune`                     | `/fortune/result`                  | `FortuneController#readFortunePage`, `FortuneController#fortune`      | `fortune.html`, `result.html`| 占い機能を提供する（ログイン後のトップページ） |
 | サウナ一覧（管理） | `/saunas`                | -                                  | `SaunaController#list`                                       | `list.html`            | 登録済みサウナの一覧表示と管理           |
 | サウナ登録画面   | `/saunas/new`            | `/saunas/create`             | `SaunaController#newSauna`, `SaunaController#createSauna`    | `form.html`            | 新規サウナを登録する                     |
 | サウナ編集画面   | `/saunas/{id}/edit`      | `/saunas/{id}/update`        | `SaunaController#editSauna`, `SaunaController#updateSauna`   | `form.html`            | 既存のサウナ情報を更新する               |
