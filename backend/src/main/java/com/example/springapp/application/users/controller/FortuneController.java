@@ -26,7 +26,7 @@ public class FortuneController {
     }
 
     @PostMapping("/fortune/result")
-    public String showFortune(Model model) {
+    public String fortune(Model model) {
         // Spring Securityのセキュリティコンテキストから認証情報を取得
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         // 認証されたユーザーのメールアドレスを取得

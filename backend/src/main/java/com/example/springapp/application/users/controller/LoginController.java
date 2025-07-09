@@ -25,28 +25,4 @@ public class LoginController {
     public String readLoginPage() {
         return "login";  
     }
-
-    /**
-     * ホームページ（index.html）を表示する
-     * ログイン成功後にSpring Securityによってリダイレクトされる
-     * @param model テンプレートにデータを渡すためのModelオブジェクト
-     * @return index.htmlテンプレートを返す
-     */
-    @GetMapping("/")
-    public String home(Model model) {
-        // Spring Securityのセキュリティコンテキストから認証情報を取得
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        
-        // 認証されたユーザーのメールアドレス（ユーザー名）を取得
-        String userEmail = authentication.getName();
-        
-        // メールアドレスを使ってデータベースからユーザー情報を取得
-        UserViewModel user = readUserService.readUserByMail(userEmail);
-        
-        // 取得したユーザー情報をテンプレートに渡す
-        model.addAttribute("user", user);
-        
-        // index.htmlテンプレートを返す
-        return "index";
-    }
 }
