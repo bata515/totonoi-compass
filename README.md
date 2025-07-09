@@ -71,7 +71,7 @@ Thymeleafをビューとして使用するクラシカルなWebアプリケー�
 | 画面名     | URL (GET) | URL (POST)                 | Controllerメソッド（例）                               | Thymeleafテンプレート | 概要                                     |
 | ---------- | --------- | -------------------------- | ------------------------------------------------------ | ------------------- | ---------------------------------------- |
 | 新規登録画面 | `/users/signup` | `/users/signup`                  | `UserController#readSignUpPage`, `UserController#createUser`     | `signup.html`       | 新規ユーザー登録を行う                     |
-| ログイン画面 | `/login`  | `/login` (Spring Security) | `LoginController#loginPage`                                 | `login.html`        | ログインフォームを提供（処理はSpring Security） |
+| ログイン画面 | `/login`  | `/login` (Spring Security) | `LoginController#readLoginPage`                                 | `login.html`        | ログインフォームを提供（処理はSpring Security） |
 
 ### 要認証
 | 画面名         | URL (GET)                      | URL (POST)                         | Controllerメソッド（例）                                     | Thymeleafテンプレート        | 概要                                     |
