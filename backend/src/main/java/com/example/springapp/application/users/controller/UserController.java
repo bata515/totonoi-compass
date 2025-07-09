@@ -21,7 +21,7 @@ public class UserController {
     CreateUserService createUserService;
 
     @GetMapping("/signup")
-    public String showSignUpPage(Model model) {
+    public String signUpPage(Model model) {
         model.addAttribute("createUserBodyModel", new CreateUserBodyModel());
         return "signup";
     }

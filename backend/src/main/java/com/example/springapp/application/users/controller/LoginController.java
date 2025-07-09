@@ -27,16 +27,6 @@ public class LoginController {
     }
 
     /**
-     * ユーザー登録ページを表示する
-     * @return register.htmlテンプレートを返す
-     */
-    @GetMapping("/register")
-    public String showRegistrationPage(Model model) {
-        model.addAttribute("createUserBodyModel", new CreateUserBodyModel());
-        return "register";
-    }
-
-    /**
      * ホームページ（index.html）を表示する
      * ログイン成功後にSpring Securityによってリダイレクトされる
      * @param model テンプレートにデータを渡すためのModelオブジェクト
