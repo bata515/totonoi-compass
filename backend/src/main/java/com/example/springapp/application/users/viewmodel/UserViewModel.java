@@ -22,8 +22,8 @@ public class UserViewModel {
         this.mail = mail;
     }
 
-    public static UserViewModel adaptToUserVewModel(UUID id,
-                                                    String familyName, String firstName, String mail) {
+    public static UserViewModel adaptToUserViewModel(UUID id,
+                                                     String familyName, String firstName, String mail) {
         return new UserViewModel(
                 id, familyName, firstName, mail
         );

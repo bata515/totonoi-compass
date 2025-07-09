@@ -1,11 +1,11 @@
 package com.example.springapp.application.users.service;
 
+import com.example.springapp.domain.domainobject.Users;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.example.springapp.application.users.viewmodel.UserViewModel;
-import com.example.springapp.domain.domainobject.User;
 import com.example.springapp.domain.irepositoryinterface.IUserRepositoryInterface;
 
 import java.util.UUID;
@@ -17,20 +17,20 @@ public class ReadUserService {
 
     @Transactional
     public UserViewModel readUserById(UUID id) {
-        User user =
+        Users users =
                 this.userRepository.findById(id);
 
-        return UserViewModel.adaptToUserVewModel(user.getId(), user.getFamilyName(), user.getFirstName(),
-                user.getMail());
+        return UserViewModel.adaptToUserViewModel(users.getId(), users.getFamilyName(), users.getFirstName(),
+                users.getMail());
     }
 
     @Transactional
     public UserViewModel readUserByMail(String mail) {
-        User user = this.userRepository.findByMail(mail)
+        Users users = this.userRepository.findByMail(mail)
                 .orElseThrow(() -> new IllegalArgumentException("User not found with email: " + mail));
 
-        return UserViewModel.adaptToUserVewModel(user.getId(), user.getFamilyName(), user.getFirstName(),
-                user.getMail());
+        return UserViewModel.adaptToUserViewModel(users.getId(), users.getFamilyName(), users.getFirstName(),
+                users.getMail());
     }
 
 }

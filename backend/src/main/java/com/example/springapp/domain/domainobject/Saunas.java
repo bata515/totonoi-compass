@@ -10,18 +10,18 @@ import java.util.UUID;
 @Getter
 @ToString
 @EqualsAndHashCode
-public class Sauna {
+public class Saunas {
     private final UUID id;
-    private final UUID userId;
+    private final String userMail;
     private final String name;
     private final String url;
     private final boolean visited;
     private final LocalDateTime created;
     private final LocalDateTime modified;
 
-    public Sauna(UUID id, UUID userId, String name, String url, boolean visited, LocalDateTime created, LocalDateTime modified) {
+    public Saunas(UUID id, String userMail, String name, String url, boolean visited, LocalDateTime created, LocalDateTime modified) {
         this.id = id;
-        this.userId = userId;
+        this.userMail = userMail;
         this.name = name;
         this.url = url;
         this.visited = visited;
@@ -29,9 +29,9 @@ public class Sauna {
         this.modified = modified;
     }
 
-    public static Sauna createSauna(UUID id, UUID userId, String name, String url, boolean visited, LocalDateTime created, LocalDateTime modified) {
-        return new Sauna(
-                id, userId, name, url, visited, created, modified
+    public static Saunas createSauna(UUID id, String userMail, String name, String url, boolean visited, LocalDateTime created, LocalDateTime modified) {
+        return new Saunas(
+                id, userMail, name, url, visited, created, modified
         );
     }
 }

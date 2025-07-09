@@ -1,13 +1,12 @@
 package com.example.springapp.infrastructer.users.dbmodel;
 
+import com.example.springapp.domain.domainobject.Saunas;
 import jakarta.persistence.*;
 import lombok.*;
 
 
 import java.time.LocalDateTime;
 import java.util.UUID;
-
-import com.example.springapp.domain.domainobject.Sauna;
 
 @Entity
 @Table(name = "saunas")
@@ -21,8 +20,8 @@ public class SaunaDbModel {
     @Column(name = "id")
     private UUID id;
 
-    @Column(name = "user_id")
-    private UUID userId;
+    @Column(name = "user_mail")
+    private String userMail;
 
     @Column(name = "name")
     private String name;
@@ -39,10 +38,10 @@ public class SaunaDbModel {
     @Column(name = "modified")
     private LocalDateTime modified;
 
-    public Sauna adaptToSauna() {
-        return new Sauna(
+    public Saunas adaptToSauna() {
+        return new Saunas(
                 this.id,
-                this.userId,
+                this.userMail,
                 this.name,
                 this.url,
                 this.visited,
@@ -51,15 +50,15 @@ public class SaunaDbModel {
         );
     }
 
-    public static SaunaDbModel adaptToSaunaDbModel(Sauna sauna) {
+    public static SaunaDbModel adaptToSaunaDbModel(Saunas saunas) {
         return new SaunaDbModel(
-                sauna.getId(),
-                sauna.getUserId(),
-                sauna.getName(),
-                sauna.getUrl(),
-                sauna.isVisited(),
-                sauna.getCreated(),
-                sauna.getModified()
+                saunas.getId(),
+                saunas.getUserMail(),
+                saunas.getName(),
+                saunas.getUrl(),
+                saunas.isVisited(),
+                saunas.getCreated(),
+                saunas.getModified()
         );
     }
 

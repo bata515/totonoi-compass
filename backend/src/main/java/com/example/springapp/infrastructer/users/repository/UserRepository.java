@@ -1,9 +1,9 @@
 package com.example.springapp.infrastructer.users.repository;
 
+import com.example.springapp.domain.domainobject.Users;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.example.springapp.domain.domainobject.User;
 import com.example.springapp.domain.irepositoryinterface.IUserRepositoryInterface;
 import com.example.springapp.infrastructer.users.dbmodel.UserDbModel;
 import com.example.springapp.infrastructer.users.jparepository.IUserJpaRepository;
@@ -19,23 +19,18 @@ public class UserRepository implements IUserRepositoryInterface {
     IUserJpaRepository userJpaRepository;
 
     @Override
-    public List<User> findAll() {
-        return this.userJpaRepository.findAll().stream().map(UserDbModel::adaptToUser).collect(Collectors.toList());
-    }
-
-    @Override
-    public User findById(UUID id) {
+    public Users findById(UUID id) {
         return this.userJpaRepository.findAllById(id).adaptToUser();
     }
 
     @Override
-    public User createUser(User user) {
-        this.userJpaRepository.save(UserDbModel.adaptToUserDbModel(user));
-        return this.userJpaRepository.findAllById(user.getId()).adaptToUser();
+    public Users createUser(Users users) {
+        this.userJpaRepository.save(UserDbModel.adaptToUserDbModel(users));
+        return this.userJpaRepository.findAllById(users.getId()).adaptToUser();
     }
 
     @Override
-    public Optional<User> findByMail(String mail) {
+    public Optional<Users> findByMail(String mail) {
         return this.userJpaRepository.findByMail(mail).map(UserDbModel::adaptToUser);
     }
 }

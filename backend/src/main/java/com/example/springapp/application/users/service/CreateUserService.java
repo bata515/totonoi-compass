@@ -5,7 +5,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.example.springapp.application.users.bodymodel.CreateUserBodyModel;
-import com.example.springapp.domain.domainobject.User;
+import com.example.springapp.domain.domainobject.Users;
 import com.example.springapp.domain.irepositoryinterface.IUserRepositoryInterface;
 
 import java.time.LocalDateTime;
@@ -20,12 +20,12 @@ public class CreateUserService {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
-    public User createUser(CreateUserBodyModel createUserBodyModel) {
+    public Users createUser(CreateUserBodyModel createUserBodyModel) {
         // メールが既に存在するかを確認
         if (userRepository.findByMail(createUserBodyModel.getMail()).isPresent()) {
             throw new IllegalArgumentException("Email is already registered");
         }
-        User user = new User(
+        Users users = new Users(
                 UUID.randomUUID(),
                 createUserBodyModel.getFamilyName(),
                 createUserBodyModel.getFamilyNameRuby(),
@@ -37,6 +37,6 @@ public class CreateUserService {
                 LocalDateTime.now(),
                 LocalDateTime.now()
         );
-        return userRepository.createUser(user);
+        return userRepository.createUser(users);
     }
 }

@@ -1,6 +1,6 @@
 # サウナ占いアプリ
 ## 概要
-優柔不断なあなたへ、占い形式でランダムにサウナを提案するアプリケーションです。Let the sauna fortune decide where we go today!
+優柔不断なあなたへ、占い形式でランダムにサウナを提案するアプリケーションです。Let the saunas fortune decide where we go today!
 
 ## 目的/背景
 優柔不断な人が今日いくサウナをランダムに占いっぽく決めてあげたい！

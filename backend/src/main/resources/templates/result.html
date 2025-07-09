@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ja"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+
+<div layout:fragment="content">
+  <h2>今日のおすすめサウナ！</h2>
+
+  <!-- エラーメッセージがある場合 -->
+  <div th:if="${error}" style="color: red;">
+    <p th:text="${error}">エラーメッセージ</p>
+  </div>
+
+  <!-- エラーがない場合のみサウナ情報を表示 -->
+  <div th:unless="${error}">
+    <h3 th:text="${sauna.name}">サウナ名</h3>
+
+    <p>
+      <a th:if="${sauna.url}" th:href="${sauna.url}" target="_blank">公式サイトはこちら</a>
+      <span th:unless="${sauna.url}">公式サイト情報なし</span>
+    </p>
+
+    <p th:text="${sauna.isVisited} ? '行ったことがある！' : 'まだ行ったことがない！'"></p>
+  </div>
+
+  <a th:href="@{/fortune}">もう一度占う</a>
+</div>
+
+</html>

@@ -1,12 +1,11 @@
 package com.example.springapp.infrastructer.users.dbmodel;
 
+import com.example.springapp.domain.domainobject.Users;
 import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDateTime;
 import java.util.UUID;
-
-import com.example.springapp.domain.domainobject.User;
 
 @Entity
 @Table(name = "users")
@@ -43,8 +42,8 @@ public class UserDbModel {
     @Column(name = "modified")
     private LocalDateTime modified;
 
-    public User adaptToUser() {
-        return new User(
+    public Users adaptToUser() {
+        return new Users(
                 this.id,
                 this.familyName,
                 this.familyNameRuby,
@@ -57,17 +56,17 @@ public class UserDbModel {
         );
     }
 
-    public static UserDbModel adaptToUserDbModel(User user) {
+    public static UserDbModel adaptToUserDbModel(Users users) {
         return new UserDbModel(
-                user.getId(),
-                user.getFamilyName(),
-                user.getFamilyNameRuby(),
-                user.getFirstName(),
-                user.getFirstNameRuby(),
-                user.getMail(),
-                user.getPassword(),
-                user.getCreated(),
-                user.getModified()
+                users.getId(),
+                users.getFamilyName(),
+                users.getFamilyNameRuby(),
+                users.getFirstName(),
+                users.getFirstNameRuby(),
+                users.getMail(),
+                users.getPassword(),
+                users.getCreated(),
+                users.getModified()
         );
     }
 }

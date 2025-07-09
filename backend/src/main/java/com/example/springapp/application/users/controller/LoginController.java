@@ -22,7 +22,7 @@ public class LoginController {
      * @return login.htmlテンプレートを返す
      */
     @GetMapping("/login")
-    public String loginPage() {
+    public String readLoginPage() {
         return "login";  
     }
 

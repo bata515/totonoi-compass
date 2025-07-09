@@ -24,7 +24,7 @@ public class SecurityConfig {
                         .usernameParameter("mail")  // ユーザー名パラメータをmailに設定
                         .passwordParameter("password")  // パスワードパラメータを明示的に設定
                         // ↑userDetailsServiceを呼び出し、ユーザー情報の照合を自動的に行います。
-                        .defaultSuccessUrl("/", true)  // ログイン成功時はindex.htmlに遷移
+                        .defaultSuccessUrl("/fortune", true)  // ログイン成功時はfortune.htmlに遷移
                         .failureUrl("/login?error=true")  // ログイン失敗時はエラーパラメータ付きでログインページに戻る
                         .permitAll()  // ログインページは認証なしで許可します
                 )

@@ -10,7 +10,7 @@ import java.util.UUID;
 @Getter
 @ToString
 @EqualsAndHashCode
-public class User {
+public class Users {
     private final UUID id;
     private final String familyName;
     private final String familyNameRuby;
@@ -26,7 +26,7 @@ public class User {
     private final LocalDateTime modified;
 
 
-    public User(UUID id, String familyName, String familyNameRuby, String firstName, String firstNameRuby, String mail, String password, LocalDateTime created, LocalDateTime modified) {
+    public Users(UUID id, String familyName, String familyNameRuby, String firstName, String firstNameRuby, String mail, String password, LocalDateTime created, LocalDateTime modified) {
         this.id = id;
         this.familyName = familyName;
         this.familyNameRuby = familyNameRuby;
@@ -38,9 +38,9 @@ public class User {
         this.modified = modified;
     }
 
-    public static User createUser(UUID id, String familyName, String familyNameRuby, String firstName, String firstNameRuby,
-                                  String mail, String password, LocalDateTime created, LocalDateTime modified) {
-        return new User(
+    public static Users createUser(UUID id, String familyName, String familyNameRuby, String firstName, String firstNameRuby,
+                                   String mail, String password, LocalDateTime created, LocalDateTime modified) {
+        return new Users(
                 id, familyName, familyNameRuby, firstName, firstNameRuby, mail, password, created, modified
         );
     }

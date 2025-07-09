@@ -4,15 +4,13 @@ import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
-import com.example.springapp.domain.domainobject.User;
+import com.example.springapp.domain.domainobject.Users;
 
 public interface IUserRepositoryInterface {
 
-    public List<User> findAll();
+    public Users findById(UUID id);
 
-    public User findById(UUID id);
+    public Users createUser(Users users);
 
-    public User createUser(User user);
-
-    public Optional<User> findByMail(String mail);
+    public Optional<Users> findByMail(String mail);
 }

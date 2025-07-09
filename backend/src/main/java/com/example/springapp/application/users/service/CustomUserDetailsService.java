@@ -1,5 +1,6 @@
 package com.example.springapp.application.users.service;
 
+import com.example.springapp.domain.domainobject.Users;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -19,12 +20,12 @@ public class CustomUserDetailsService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        com.example.springapp.domain.domainobject.User user = userRepository.findByMail(username)
+        Users users = userRepository.findByMail(username)
                 .orElseThrow(() -> new UsernameNotFoundException("User not found with email: " + username));
 
         return User.builder()
-                .username(user.getMail())
-                .password(user.getPassword()) // 暗号化されたパスワードを使用
+                .username(users.getMail())
+                .password(users.getPassword()) // 暗号化されたパスワードを使用
                 .build();
     }
 }

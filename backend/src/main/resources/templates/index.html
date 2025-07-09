@@ -7,8 +7,8 @@
 </head>
 <body>
 <div layout:fragment="content">
-  <h1 th:if="${user}">ようこそ、<span th:text="${user.familyName + ' ' + user.firstName}"></span>さん！</h1>
-  <h1 th:unless="${user}">ようこそ、名無しさん</h1>
+  <h1 th:if="${users}">ようこそ、<span th:text="${users.familyName + ' ' + users.firstName}"></span>さん！</h1>
+  <h1 th:unless="${users}">ようこそ、名無しさん</h1>
   <p>ログインに成功しました！</p>
   <p>このページは認証されたユーザーのみがアクセスできます。</p>
 </div>
