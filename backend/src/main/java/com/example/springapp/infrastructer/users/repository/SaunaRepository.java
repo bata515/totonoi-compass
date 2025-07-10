@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 @Repository
@@ -18,5 +20,17 @@ public class SaunaRepository implements ISaunaRepositoryInterface {
     @Override
     public List<Sauna> findAllByUserMail(String userMail) {
         return this.saunaJpaRepository.findAllByUserMail(userMail).stream().map(SaunaDbModel::adaptToSauna).collect(Collectors.toList());
+    }
+
+    @Override
+    public Optional<Sauna> findAllById(UUID id) {
+        return this.saunaJpaRepository.findById(id).map(SaunaDbModel::adaptToSauna);
+    }
+
+    @Override
+    public void saveSauna(Sauna sauna) {
+        SaunaDbModel saunaDbModel =
+                SaunaDbModel.adaptToSaunaDbModel(sauna);
+        this.saunaJpaRepository.save(saunaDbModel);
     }
 }

@@ -29,9 +29,15 @@ public class Sauna {
         this.modified = modified;
     }
 
-    public static Sauna createSauna(UUID id, String userMail, String name, String url, boolean visited, LocalDateTime created, LocalDateTime modified) {
+    public static Sauna createSauna(UUID id, String userMail, String name, String url, boolean visited) {
         return new Sauna(
-                id, userMail, name, url, visited, created, modified
+                id, userMail, name, url, visited, LocalDateTime.now(), LocalDateTime.now()
+        );
+    }
+
+    public Sauna updateSauna(String name, String url, boolean visited, LocalDateTime created) {
+        return new Sauna(
+                this.id, this.userMail, name, url, visited, created,LocalDateTime.now()
         );
     }
 }

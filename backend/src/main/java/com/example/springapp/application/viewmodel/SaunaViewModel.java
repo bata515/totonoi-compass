@@ -14,20 +14,20 @@ public class SaunaViewModel {
     private final String userMail;
     private final String name;
     private final String url;
-    private final boolean isVisited;
+    private final Boolean visited;
 
 
-    public SaunaViewModel(UUID id, String userMail, String name, String url, boolean isVisited) {
+    public SaunaViewModel(UUID id, String userMail, String name, String url, boolean visited) {
         this.id = id;
         this.userMail = userMail;
         this.name = name;
         this.url = url;
-        this.isVisited = isVisited;
+        this.visited = visited;
     }
 
-    public static SaunaViewModel adaptToSaunaViewModel(UUID id, String userMail, String name, String url, boolean isVisited) {
+    public static SaunaViewModel adaptToSaunaViewModel(UUID id, String userMail, String name, String url, boolean visited) {
         return new SaunaViewModel(
-                id, userMail,name,url,isVisited
+                id, userMail,name,url,visited
         );
     }
 }

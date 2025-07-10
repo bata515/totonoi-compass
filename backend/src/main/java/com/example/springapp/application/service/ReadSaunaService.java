@@ -4,11 +4,13 @@ import com.example.springapp.application.viewmodel.SaunaViewModel;
 import com.example.springapp.domain.domainobject.Sauna;
 import com.example.springapp.domain.irepositoryinterface.ISaunaRepositoryInterface;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 import java.util.concurrent.ThreadLocalRandom;
 import java.util.stream.Collectors;
 
@@ -39,5 +41,17 @@ public class ReadSaunaService {
         return saunaList.stream().map(
                 sauna -> SaunaViewModel.adaptToSaunaViewModel(sauna.getId(),sauna.getUserMail(),sauna.getName(),sauna.getUrl(),sauna.isVisited()))
                 .collect(Collectors.toList());
+    }
+
+    @Transactional
+    public SaunaViewModel readSaunaById(UUID id) {
+        Sauna sauna =
+                this.saunaRepository.findAllById(id).orElseThrow(
+                        () -> new IllegalArgumentException("this sauna is not exist. id is: "+ id)
+                );
+
+        return SaunaViewModel.adaptToSaunaViewModel(
+                sauna.getId(),sauna.getUserMail(),sauna.getName(),sauna.getUrl(),sauna.isVisited()
+        );
     }
 }
