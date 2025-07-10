@@ -8,36 +8,27 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
-import java.util.Optional;
+import java.util.List;
 
 @Controller
-public class FortuneController {
+@RequestMapping("/saunas")
+public class SaunasController {
     @Autowired
     ReadSaunaService readSaunaService;
 
-    @GetMapping("/fortune")
-    public String readFortunePage() {
-
-        return "fortune";
-    }
-
-    @PostMapping("/fortune/result")
-    public String fortune(Model model) {
+    @GetMapping
+    public String readSaunasPage(Model model) {
         // Spring Securityのセキュリティコンテキストから認証情報を取得
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         // 認証されたユーザーのメールアドレスを取得
         String userMail = authentication.getName();
+        List<SaunaViewModel> saunaViewModelList = readSaunaService.readSaunaListsByUserMail(userMail);
 
-        Optional<SaunaViewModel> saunaViewModelOptional = readSaunaService.readRandomSaunaByUserMail(userMail);
-
-        if (saunaViewModelOptional.isEmpty()) {
-            model.addAttribute("error", "サウナの情報が見つかりませんでした。");
-            return "result"; // result.htmlにエラーメッセージを表示
-        }
-
-        model.addAttribute("sauna", saunaViewModelOptional.get());
-        return "result"; // result.htmlを表示
+        model.addAttribute("saunas", saunaViewModelList);
+        return "list";
     }
+
+
 }

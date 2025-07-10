@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout}">
+<div layout:fragment="content">
+  <h2>登録済みサウナ一覧</h2>
+  <a th:href="@{/saunas/new}">＋ 新規サウナ登録</a>
+  <table>
+    <thead>
+    <tr>
+      <th>サウナ名</th><th>URL</th><th>訪問要否</th><th>操作</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="sauna : ${saunas}">
+      <td th:text="${sauna.name}">サウナ名</td>
+      <td><a th:href="${sauna.url}" target="_blank" th:text="${sauna.url}">URL</a></td>
+      <td th:text="${sauna.visited} ? '訪問済み！' : '未訪問'"></td>
+      <td>
+        <a th:href="@{'/saunas/' + ${sauna.id} + '/edit'}">編集</a>
+        <form th:action="@{'/saunas/' + ${sauna.id} + '/delete'}" method="post" style="display:inline;">
+          <input type="hidden" name="_method" value="delete"/>
+          <button type="submit" onclick="return confirm('本当に削除しますか？')">削除</button>
+        </form>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+</html>

@@ -10,7 +10,7 @@ import com.example.springapp.application.service.CreateUserService;
 
 @Controller
 @RequestMapping("/users")
-public class UserController {
+public class UsersController {
     @Autowired
     CreateUserService createUserService;
 

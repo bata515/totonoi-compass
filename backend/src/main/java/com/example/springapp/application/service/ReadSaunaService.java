@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 import java.util.Optional;
 import java.util.concurrent.ThreadLocalRandom;
+import java.util.stream.Collectors;
 
 @Service
 public class ReadSaunaService {
@@ -17,7 +18,7 @@ public class ReadSaunaService {
     ISaunaRepositoryInterface saunaRepository;
 
     @Transactional
-    public Optional<SaunaViewModel> readSaunaListByUserMail(String userMail) {
+    public Optional<SaunaViewModel> readRandomSaunaByUserMail(String userMail) {
         List<Sauna> saunaList =
                 this.saunaRepository.findAllByUserMail(userMail);
 
@@ -27,5 +28,16 @@ public class ReadSaunaService {
             return Optional.of(SaunaViewModel.adaptToSaunaViewModel(resultSauna.getId(), resultSauna.getUserMail(), resultSauna.getName(), resultSauna.getUrl(), resultSauna.isVisited()));
         }
         return Optional.empty();
+    }
+
+    @Transactional
+    public List<SaunaViewModel> readSaunaListsByUserMail(String userMail) {
+        List<Sauna> saunaList =
+                this.saunaRepository.findAllByUserMail(userMail);
+
+
+        return saunaList.stream().map(
+                sauna -> SaunaViewModel.adaptToSaunaViewModel(sauna.getId(),sauna.getUserMail(),sauna.getName(),sauna.getUrl(),sauna.isVisited()))
+                .collect(Collectors.toList());
     }
 }
