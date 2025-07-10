@@ -1,8 +1,7 @@
-package com.example.springapp.application.users.service;
+package com.example.springapp.application.service;
 
-import com.example.springapp.domain.domainobject.Users;
+import com.example.springapp.domain.domainobject.User;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -20,12 +19,12 @@ public class CustomUserDetailsService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        Users users = userRepository.findByMail(username)
+        User user = userRepository.findByMail(username)
                 .orElseThrow(() -> new UsernameNotFoundException("User not found with email: " + username));
 
-        return User.builder()
-                .username(users.getMail())
-                .password(users.getPassword()) // 暗号化されたパスワードを使用
+        return org.springframework.security.core.userdetails.User.builder()
+                .username(user.getMail())
+                .password(user.getPassword()) // 暗号化されたパスワードを使用
                 .build();
     }
 }

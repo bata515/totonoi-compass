@@ -1,6 +1,6 @@
 package com.example.springapp.infrastructer.users.dbmodel;
 
-import com.example.springapp.domain.domainobject.Users;
+import com.example.springapp.domain.domainobject.User;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -42,8 +42,8 @@ public class UserDbModel {
     @Column(name = "modified")
     private LocalDateTime modified;
 
-    public Users adaptToUser() {
-        return new Users(
+    public User adaptToUser() {
+        return new User(
                 this.id,
                 this.familyName,
                 this.familyNameRuby,
@@ -56,17 +56,17 @@ public class UserDbModel {
         );
     }
 
-    public static UserDbModel adaptToUserDbModel(Users users) {
+    public static UserDbModel adaptToUserDbModel(User user) {
         return new UserDbModel(
-                users.getId(),
-                users.getFamilyName(),
-                users.getFamilyNameRuby(),
-                users.getFirstName(),
-                users.getFirstNameRuby(),
-                users.getMail(),
-                users.getPassword(),
-                users.getCreated(),
-                users.getModified()
+                user.getId(),
+                user.getFamilyName(),
+                user.getFamilyNameRuby(),
+                user.getFirstName(),
+                user.getFirstNameRuby(),
+                user.getMail(),
+                user.getPassword(),
+                user.getCreated(),
+                user.getModified()
         );
     }
 }

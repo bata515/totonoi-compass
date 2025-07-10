@@ -1,4 +1,4 @@
-package com.example.springapp.application.users.bodymodel;
+package com.example.springapp.application.viewmodel;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -7,7 +7,7 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
-public class CreateUserBodyModel {
+public class CreateUserViewModel {
     private String familyName;
     private String familyNameRuby;
     private String firstName;

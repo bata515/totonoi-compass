@@ -1,6 +1,6 @@
 package com.example.springapp.infrastructer.users.repository;
 
-import com.example.springapp.domain.domainobject.Saunas;
+import com.example.springapp.domain.domainobject.Sauna;
 import com.example.springapp.domain.irepositoryinterface.ISaunaRepositoryInterface;
 import com.example.springapp.infrastructer.users.dbmodel.SaunaDbModel;
 import com.example.springapp.infrastructer.users.jparepository.ISaunaJpaRepository;
@@ -16,7 +16,7 @@ public class SaunaRepository implements ISaunaRepositoryInterface {
     ISaunaJpaRepository saunaJpaRepository;
 
     @Override
-    public List<Saunas> findAllByUserMail(String userMail) {
+    public List<Sauna> findAllByUserMail(String userMail) {
         return this.saunaJpaRepository.findAllByUserMail(userMail).stream().map(SaunaDbModel::adaptToSauna).collect(Collectors.toList());
     }
 }

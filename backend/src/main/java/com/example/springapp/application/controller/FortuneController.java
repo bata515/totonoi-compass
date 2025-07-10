@@ -1,15 +1,13 @@
-package com.example.springapp.application.users.controller;
+package com.example.springapp.application.controller;
 
-import com.example.springapp.application.users.bodymodel.CreateUserBodyModel;
-import com.example.springapp.application.users.service.ReadSaunaService;
-import com.example.springapp.application.users.viewmodel.SaunaViewModel;
+import com.example.springapp.application.service.ReadSaunaService;
+import com.example.springapp.application.viewmodel.SaunaViewModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.Optional;

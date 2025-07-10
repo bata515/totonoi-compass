@@ -1,4 +1,4 @@
-package com.example.springapp.application.users.viewmodel;
+package com.example.springapp.application.viewmodel;
 
 import lombok.EqualsAndHashCode;
 import lombok.Getter;

@@ -1,6 +1,6 @@
 package com.example.springapp.infrastructer.users.dbmodel;
 
-import com.example.springapp.domain.domainobject.Saunas;
+import com.example.springapp.domain.domainobject.Sauna;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -38,8 +38,8 @@ public class SaunaDbModel {
     @Column(name = "modified")
     private LocalDateTime modified;
 
-    public Saunas adaptToSauna() {
-        return new Saunas(
+    public Sauna adaptToSauna() {
+        return new Sauna(
                 this.id,
                 this.userMail,
                 this.name,
@@ -50,15 +50,15 @@ public class SaunaDbModel {
         );
     }
 
-    public static SaunaDbModel adaptToSaunaDbModel(Saunas saunas) {
+    public static SaunaDbModel adaptToSaunaDbModel(Sauna sauna) {
         return new SaunaDbModel(
-                saunas.getId(),
-                saunas.getUserMail(),
-                saunas.getName(),
-                saunas.getUrl(),
-                saunas.isVisited(),
-                saunas.getCreated(),
-                saunas.getModified()
+                sauna.getId(),
+                sauna.getUserMail(),
+                sauna.getName(),
+                sauna.getUrl(),
+                sauna.isVisited(),
+                sauna.getCreated(),
+                sauna.getModified()
         );
     }
 

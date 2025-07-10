@@ -1,10 +1,10 @@
 package com.example.springapp.domain.irepositoryinterface;
 
-import com.example.springapp.domain.domainobject.Saunas;
+import com.example.springapp.domain.domainobject.Sauna;
 
 import java.util.List;
 
 public interface ISaunaRepositoryInterface {
 
-    public List<Saunas> findAllByUserMail(String userMail);
+    public List<Sauna> findAllByUserMail(String userMail);
 }

@@ -1,11 +1,11 @@
-package com.example.springapp.application.users.service;
+package com.example.springapp.application.service;
 
+import com.example.springapp.application.viewmodel.CreateUserViewModel;
+import com.example.springapp.domain.domainobject.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import com.example.springapp.application.users.bodymodel.CreateUserBodyModel;
-import com.example.springapp.domain.domainobject.Users;
 import com.example.springapp.domain.irepositoryinterface.IUserRepositoryInterface;
 
 import java.time.LocalDateTime;
@@ -20,23 +20,23 @@ public class CreateUserService {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
-    public Users createUser(CreateUserBodyModel createUserBodyModel) {
+    public User createUser(CreateUserViewModel createUserViewModel) {
         // メールが既に存在するかを確認
-        if (userRepository.findByMail(createUserBodyModel.getMail()).isPresent()) {
+        if (userRepository.findByMail(createUserViewModel.getMail()).isPresent()) {
             throw new IllegalArgumentException("Email is already registered");
         }
-        Users users = new Users(
+        User user = new User(
                 UUID.randomUUID(),
-                createUserBodyModel.getFamilyName(),
-                createUserBodyModel.getFamilyNameRuby(),
-                createUserBodyModel.getFirstName(),
-                createUserBodyModel.getFirstNameRuby(),
-                createUserBodyModel.getMail(),
+                createUserViewModel.getFamilyName(),
+                createUserViewModel.getFamilyNameRuby(),
+                createUserViewModel.getFirstName(),
+                createUserViewModel.getFirstNameRuby(),
+                createUserViewModel.getMail(),
                 // パスワードを暗号化
-                passwordEncoder.encode(createUserBodyModel.getPassword()),
+                passwordEncoder.encode(createUserViewModel.getPassword()),
                 LocalDateTime.now(),
                 LocalDateTime.now()
         );
-        return userRepository.createUser(users);
+        return userRepository.createUser(user);
     }
 }

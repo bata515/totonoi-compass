@@ -7,7 +7,7 @@
 <div layout:fragment="content">
   <h2>新規登録</h2>
 
-  <form th:action="@{/users/create}" method="post" th:object="${createUserBodyModel}">
+  <form th:action="@{/users/create}" method="post" th:object="${createUserViewModel}">
     <div>
       <label>姓:
         <input type="text" th:field="*{familyName}" required>

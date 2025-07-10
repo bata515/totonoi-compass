@@ -1,16 +1,15 @@
 package com.example.springapp.domain.irepositoryinterface;
 
-import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
-import com.example.springapp.domain.domainobject.Users;
+import com.example.springapp.domain.domainobject.User;
 
 public interface IUserRepositoryInterface {
 
-    public Users findById(UUID id);
+    public User findById(UUID id);
 
-    public Users createUser(Users users);
+    public User createUser(User user);
 
-    public Optional<Users> findByMail(String mail);
+    public Optional<User> findByMail(String mail);
 }
