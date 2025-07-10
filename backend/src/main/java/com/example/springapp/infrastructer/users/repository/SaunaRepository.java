@@ -33,4 +33,9 @@ public class SaunaRepository implements ISaunaRepositoryInterface {
                 SaunaDbModel.adaptToSaunaDbModel(sauna);
         this.saunaJpaRepository.save(saunaDbModel);
     }
+
+    @Override
+    public void deleteById(UUID id) {
+        this.saunaJpaRepository.deleteById(id);
+    }
 }

@@ -1,6 +1,7 @@
 package com.example.springapp.application.controller;
 
 import com.example.springapp.application.service.CreateSaunaService;
+import com.example.springapp.application.service.DeleteSaunaService;
 import com.example.springapp.application.service.ReadSaunaService;
 import com.example.springapp.application.service.UpdateSaunaService;
 import com.example.springapp.application.viewmodel.SaunaViewModel;
@@ -23,6 +24,8 @@ public class SaunasController {
     CreateSaunaService createSaunaService;
     @Autowired
     UpdateSaunaService updateSaunaService;
+    @Autowired
+    DeleteSaunaService deleteSaunaService;
 
     @GetMapping
     public String readSaunasPage(Model model) {
@@ -75,5 +78,9 @@ public class SaunasController {
         return "redirect:/saunas";
     }
 
-
+    @DeleteMapping("/{id}")
+    public String deleteSauna(@PathVariable UUID id) {
+        this.deleteSaunaService.deleteSaunaById(id);
+        return "redirect:/saunas";
+    }
 }

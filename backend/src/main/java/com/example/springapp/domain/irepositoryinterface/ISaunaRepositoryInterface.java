@@ -13,4 +13,6 @@ public interface ISaunaRepositoryInterface {
     public Optional<Sauna> findAllById(UUID id);
 
     void saveSauna(Sauna sauna);
+
+    void deleteById(UUID id);
 }

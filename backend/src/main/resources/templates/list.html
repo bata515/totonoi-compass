@@ -16,7 +16,7 @@
       <td th:text="${sauna.visited} ? '訪問済み！' : '未訪問'"></td>
       <td>
         <a th:href="@{'/saunas/' + ${sauna.id} + '/edit'}">編集</a>
-        <form th:action="@{'/saunas/' + ${sauna.id} + '/delete'}" method="post" style="display:inline;">
+        <form th:action="@{'/saunas/' + ${sauna.id}}" method="post" style="display:inline;">
           <input type="hidden" name="_method" value="delete"/>
           <button type="submit" onclick="return confirm('本当に削除しますか？')">削除</button>
         </form>

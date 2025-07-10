@@ -21,7 +21,7 @@
       <span th:unless="${sauna.url}">公式サイト情報なし</span>
     </p>
 
-    <p th:text="${sauna.isVisited} ? '行ったことがある！' : 'まだ行ったことがない！'"></p>
+    <p th:text="${sauna.visited} ? '行ったことがある！' : 'まだ行ったことがない！'"></p>
   </div>
 
   <a th:href="@{/fortune}">もう一度占う</a>
