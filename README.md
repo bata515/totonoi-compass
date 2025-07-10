@@ -78,8 +78,8 @@ Thymeleafをビューとして使用するクラシカルなWebアプリケー�
 | -------------- | ------------------------------ | ---------------------------------- | ------------------------------------------------------------ | ---------------------------- | ---------------------------------------- |
 | 占い画面       | `/fortune`                     | `/fortune/result`                  | `FortuneController#readFortunePage`, `FortuneController#fortune`      | `fortune.html`, `result.html`| 占い機能を提供する（ログイン後のトップページ） |
 | サウナ一覧（管理） | `/saunas`                | -                                  | `SaunasController#readSaunasPage`                                       | `list.html`            | 登録済みサウナの一覧表示と管理           |
-| サウナ登録画面   | `/saunas/new`            | `/saunas/create`             | `SaunasController#newSauna`, `SaunasController#createSauna`    | `form.html`            | 新規サウナを登録する                     |
-| サウナ編集画面   | `/saunas/{id}/edit`      | `/saunas/{id}/update`        | `SaunasController#editSauna`, `SaunasController#updateSauna`   | `form.html`            | 既存のサウナ情報を更新する               |
+| サウナ登録画面   | `/saunas/new`            | `/saunas/create`             | `SaunasController#readCreateSaunaPage`, `SaunasController#createSauna`    | `form.html`            | 新規サウナを登録する                     |
+| サウナ編集画面   | `/saunas/{id}/edit`      | `/saunas/{id}/update`        | `SaunasController#readEditSaunaPage`, `SaunasController#updateSauna`   | `form.html`            | 既存のサウナ情報を更新する               |
 | サウナ削除     | -                              | `/saunas/{id}/delete`        | `SaunaController#deleteSauna`                                | -                            | サウナを削除し、一覧画面へリダイレクト   |
 
 ## Thymeleafテンプレート構成
