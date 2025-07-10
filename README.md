@@ -74,12 +74,12 @@ Thymeleafをビューとして使用するクラシカルなWebアプリケー�
 | ログイン画面 | `/login`  | `/login` (Spring Security) | `LoginController#readLoginPage`                                 | `login.html`        | ログインフォームを提供（処理はSpring Security） |
 
 ### 要認証
-| 画面名         | URL (GET)                      | URL (POST)                         | Controllerメソッド（例）                                     | Thymeleafテンプレート        | 概要                                     |
+| 画面名         | URL (GET)                      | URL (POST/PUT/DELETE)                         | Controller#メソッド                                     | Thymeleafテンプレート        | 概要                                     |
 | -------------- | ------------------------------ | ---------------------------------- | ------------------------------------------------------------ | ---------------------------- | ---------------------------------------- |
 | 占い画面       | `/fortune`                     | `/fortune/result`                  | `FortuneController#readFortunePage`, `FortuneController#fortune`      | `fortune.html`, `result.html`| 占い機能を提供する（ログイン後のトップページ） |
-| サウナ一覧（管理） | `/saunas`                | -                                  | `SaunaController#list`                                       | `list.html`            | 登録済みサウナの一覧表示と管理           |
-| サウナ登録画面   | `/saunas/new`            | `/saunas/create`             | `SaunaController#newSauna`, `SaunaController#createSauna`    | `form.html`            | 新規サウナを登録する                     |
-| サウナ編集画面   | `/saunas/{id}/edit`      | `/saunas/{id}/update`        | `SaunaController#editSauna`, `SaunaController#updateSauna`   | `form.html`            | 既存のサウナ情報を更新する               |
+| サウナ一覧（管理） | `/saunas`                | -                                  | `SaunasController#readSaunasPage`                                       | `list.html`            | 登録済みサウナの一覧表示と管理           |
+| サウナ登録画面   | `/saunas/new`            | `/saunas/create`             | `SaunasController#newSauna`, `SaunasController#createSauna`    | `form.html`            | 新規サウナを登録する                     |
+| サウナ編集画面   | `/saunas/{id}/edit`      | `/saunas/{id}/update`        | `SaunasController#editSauna`, `SaunasController#updateSauna`   | `form.html`            | 既存のサウナ情報を更新する               |
 | サウナ削除     | -                              | `/saunas/{id}/delete`        | `SaunaController#deleteSauna`                                | -                            | サウナを削除し、一覧画面へリダイレクト   |
 
 ## Thymeleafテンプレート構成
