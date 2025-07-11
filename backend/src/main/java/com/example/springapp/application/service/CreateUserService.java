@@ -1,6 +1,6 @@
 package com.example.springapp.application.service;
 
-import com.example.springapp.application.viewmodel.CreateUserViewModel;
+import com.example.springapp.application.viewmodel.UserViewModel;
 import com.example.springapp.domain.domainobject.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -20,20 +20,20 @@ public class CreateUserService {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
-    public User createUser(CreateUserViewModel createUserViewModel) {
+    public User createUser(UserViewModel userViewModel) {
         // メールが既に存在するかを確認
-        if (userRepository.findByMail(createUserViewModel.getMail()).isPresent()) {
+        if (userRepository.findByMail(userViewModel.getMail()).isPresent()) {
             throw new IllegalArgumentException("Email is already registered");
         }
         User user = new User(
                 UUID.randomUUID(),
-                createUserViewModel.getFamilyName(),
-                createUserViewModel.getFamilyNameRuby(),
-                createUserViewModel.getFirstName(),
-                createUserViewModel.getFirstNameRuby(),
-                createUserViewModel.getMail(),
+                userViewModel.getFamilyName(),
+                userViewModel.getFamilyNameRuby(),
+                userViewModel.getFirstName(),
+                userViewModel.getFirstNameRuby(),
+                userViewModel.getMail(),
                 // パスワードを暗号化
-                passwordEncoder.encode(createUserViewModel.getPassword()),
+                passwordEncoder.encode(userViewModel.getPassword()),
                 LocalDateTime.now(),
                 LocalDateTime.now()
         );

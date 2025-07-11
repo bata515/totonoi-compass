@@ -20,8 +20,8 @@ public class ReadUserService {
         User user =
                 this.userRepository.findById(id);
 
-        return UserViewModel.adaptToUserViewModel(user.getId(), user.getFamilyName(), user.getFirstName(),
-                user.getMail());
+        return UserViewModel.adaptToUserViewModel(user.getId(), user.getFamilyName(),user.getFamilyNameRuby(), user.getFirstName(),
+                user.getFirstNameRuby(), user.getMail(),user.getPassword());
     }
 
     @Transactional
@@ -29,8 +29,8 @@ public class ReadUserService {
         User user = this.userRepository.findByMail(mail)
                 .orElseThrow(() -> new IllegalArgumentException("User not found with email: " + mail));
 
-        return UserViewModel.adaptToUserViewModel(user.getId(), user.getFamilyName(), user.getFirstName(),
-                user.getMail());
+        return UserViewModel.adaptToUserViewModel(user.getId(), user.getFamilyName(),user.getFamilyNameRuby(), user.getFirstName(),
+                user.getFirstNameRuby(), user.getMail(),user.getPassword());
     }
 
 }

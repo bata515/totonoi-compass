@@ -1,6 +1,6 @@
 package com.example.springapp.application.controller;
 
-import com.example.springapp.application.viewmodel.CreateUserViewModel;
+import com.example.springapp.application.viewmodel.UserViewModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,13 +16,14 @@ public class UsersController {
 
     @GetMapping("/signup")
     public String readSignUpPage(Model model) {
-        model.addAttribute("createUserViewModel", new CreateUserViewModel());
+    model.addAttribute("userViewModel", new UserViewModel(null,null,null,null,
+            null,null,null));
         return "signup";
     }
 
     @PostMapping("/create")
-    public String createUser(@ModelAttribute("createUserViewModel") CreateUserViewModel createUserViewModel) {
-        createUserService.createUser(createUserViewModel);
+    public String createUser(@ModelAttribute("userViewModel") UserViewModel userViewModel) {
+        createUserService.createUser(userViewModel);
         return "redirect:/login"; // 登録後はログインページへリダイレクト
     }
 }
