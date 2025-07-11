@@ -5,26 +5,99 @@
       layout:decorate="~{layout}">
 
 <div layout:fragment="content">
-  <h2>今日のおすすめサウナ！</h2>
+  <div class="text-center">
+    <!-- ヘッダー -->
+    <div class="mb-8">
+      <h2 class="text-4xl font-bold text-gray-900 mb-2">今日のおすすめサウナ！</h2>
+      <div class="w-24 h-1 bg-gradient-to-r from-primary to-accent mx-auto rounded-full"></div>
+    </div>
 
-  <!-- エラーメッセージがある場合 -->
-  <div th:if="${error}" style="color: red;">
-    <p th:text="${error}">エラーメッセージ</p>
+    <!-- エラーメッセージがある場合 -->
+    <div th:if="${error}" class="max-w-md mx-auto">
+      <div class="bg-red-50 border border-red-200 rounded-lg p-6 mb-8">
+        <div class="flex items-center justify-center mb-4">
+          <svg class="w-12 h-12 text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L3.732 16.5c-.77.833.192 2.5 1.732 2.5z"></path>
+          </svg>
+        </div>
+        <p class="text-red-800 font-medium" th:text="${error}">エラーメッセージ</p>
+      </div>
+    </div>
+
+    <!-- エラーがない場合のみサウナ情報を表示 -->
+    <div th:unless="${error}" class="max-w-2xl mx-auto">
+      <!-- 結果カード -->
+      <div class="bg-white rounded-2xl shadow-xl p-8 mb-8 border border-gray-100">
+        <!-- サウナ名 -->
+        <div class="mb-6">
+          <div class="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-primary to-blue-600 rounded-full mb-4">
+            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path>
+            </svg>
+          </div>
+          <h3 class="text-3xl font-bold text-gray-900 mb-2" th:text="${sauna.name}">サウナ名</h3>
+        </div>
+
+        <!-- サウナ情報 -->
+        <div class="space-y-4 mb-8">
+          <!-- URL情報 -->
+          <div class="flex items-center justify-center">
+            <div class="flex items-center space-x-3">
+              <svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"></path>
+              </svg>
+              <div>
+                <a th:if="${sauna.url}" th:href="${sauna.url}" target="_blank" 
+                   class="text-primary hover:text-blue-600 font-medium transition-colors duration-200">
+                  公式サイトはこちら
+                </a>
+                <span th:unless="${sauna.url}" class="text-gray-500">公式サイト情報なし</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- 訪問状況 -->
+          <div class="flex items-center justify-center">
+            <div class="flex items-center space-x-3">
+              <svg th:if="${sauna.visited}" class="w-5 h-5 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+              </svg>
+              <svg th:unless="${sauna.visited}" class="w-5 h-5 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+              </svg>
+              <span class="font-medium" 
+                    th:classappend="${sauna.visited} ? 'text-green-700' : 'text-accent'"
+                    th:text="${sauna.visited} ? '行ったことがある！' : 'まだ行ったことがない！'">
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 占い結果メッセージ -->
+        <div class="bg-gradient-to-r from-primary/5 to-accent/5 rounded-xl p-6 mb-6">
+          <p class="text-lg text-gray-700 leading-relaxed">
+            <span th:if="${sauna.visited}">
+              馴染みのあるこの場所で、今日も素晴らしいひとときを過ごしてください ✨
+            </span>
+            <span th:unless="${sauna.visited}">
+              新しい発見が待っているこの場所へ、ぜひ足を運んでみてください ✨
+            </span>
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- アクションボタン -->
+    <div class="flex justify-center">
+      <a th:href="@{/fortune}" 
+         class="inline-flex items-center bg-gradient-to-r from-primary to-blue-600 text-white font-medium py-3 px-8 rounded-full shadow-lg hover:from-blue-600 hover:to-blue-700 transform hover:scale-105 transition-all duration-300 focus:outline-none focus:ring-4 focus:ring-primary focus:ring-opacity-50">
+        <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path>
+        </svg>
+        もう一度占う
+      </a>
+    </div>
   </div>
-
-  <!-- エラーがない場合のみサウナ情報を表示 -->
-  <div th:unless="${error}">
-    <h3 th:text="${sauna.name}">サウナ名</h3>
-
-    <p>
-      <a th:if="${sauna.url}" th:href="${sauna.url}" target="_blank">公式サイトはこちら</a>
-      <span th:unless="${sauna.url}">公式サイト情報なし</span>
-    </p>
-
-    <p th:text="${sauna.visited} ? '行ったことがある！' : 'まだ行ったことがない！'"></p>
-  </div>
-
-  <a th:href="@{/fortune}">もう一度占う</a>
 </div>
 
 </html>
