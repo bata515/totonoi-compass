@@ -1,7 +1,9 @@
 package com.example.springapp.application.controller;
 
 import com.example.springapp.application.service.ReadSaunaService;
+import com.example.springapp.application.service.ReadUserService;
 import com.example.springapp.application.viewmodel.SaunaViewModel;
+import com.example.springapp.application.viewmodel.UserViewModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -16,10 +18,20 @@ import java.util.Optional;
 public class FortuneController {
     @Autowired
     ReadSaunaService readSaunaService;
+    @Autowired
+    ReadUserService readUserService;
 
     @GetMapping("/fortune")
-    public String readFortunePage() {
+    public String readFortunePage(Model model) {
+        // Spring Securityのセキュリティコンテキストから認証情報を取得
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        // 認証されたユーザーのメールアドレスを取得
+        String userMail = authentication.getName();
 
+        UserViewModel userViewModel =
+        this.readUserService.readUserByMail(userMail);
+
+        model.addAttribute("username", userViewModel.getFamilyName()+userViewModel.getFirstName());
         return "fortune";
     }
 
