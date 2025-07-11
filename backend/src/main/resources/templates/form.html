@@ -4,7 +4,7 @@
     <h2 th:text="${sauna.id != null} ? 'サウナ編集' : '新規サウナ登録'">サウナ登録</h2>
     <form th:action="${sauna.id != null} ? @{'/saunas/' + ${sauna.id} + '/update'} : @{/saunas/create}" method="post" th:object="${sauna}">
         <div>
-            <label>サウナ名: <input type="text" th:field="*{name}" required></label>
+            <label>サウナ名: <input type="text" th:field="*{name}" required maxlength="40"></label>
         </div>
         <div>
             <label>URL: <input type="url" th:field="*{url}"></label>
