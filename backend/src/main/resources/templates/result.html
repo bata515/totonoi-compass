@@ -56,6 +56,22 @@
             </div>
           </div>
 
+          <!-- 公式サイト埋め込み -->
+          <div th:if="${sauna.url}" class="mt-6">
+            <div class="bg-gray-50 rounded-lg p-4">
+              <h4 class="text-lg font-semibold text-gray-800 mb-3 text-center">公式サイト</h4>
+              <div class="relative w-full" style="padding-bottom: 56.25%; height: 0;">
+                <iframe th:src="${sauna.url}" 
+                        class="absolute top-0 left-0 w-full h-full rounded-lg border border-gray-200"
+                        frameborder="0"
+                        allowfullscreen
+                        loading="lazy"
+                        sandbox="allow-scripts allow-same-origin allow-popups allow-forms">
+                </iframe>
+              </div>
+            </div>
+          </div>
+
           <!-- 訪問状況 -->
           <div class="flex items-center justify-center">
             <div class="flex items-center space-x-3">
@@ -73,14 +89,14 @@
           </div>
         </div>
 
-        <!-- 占い結果メッセージ -->
+        <!-- 提案結果メッセージ -->
         <div class="bg-gradient-to-r from-primary/5 to-accent/5 rounded-xl p-6 mb-6">
           <p class="text-lg text-gray-700 leading-relaxed">
             <span th:if="${sauna.visited}">
-              馴染みのあるこの場所で、今日も素晴らしいひとときを過ごしてください ✨
+              馴染みのあるこの場所で、今日も素晴らしいひとときを過ごしてください
             </span>
             <span th:unless="${sauna.visited}">
-              新しい発見が待っているこの場所へ、ぜひ足を運んでみてください ✨
+              新しい発見が待っているこの場所へ、ぜひ足を運んでみてください 
             </span>
           </p>
         </div>
@@ -94,7 +110,7 @@
         <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path>
         </svg>
-        もう一度占う
+        もう一度提案する
       </a>
     </div>
   </div>

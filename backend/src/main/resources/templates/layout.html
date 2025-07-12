@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title th:text="${title}">Sauna Fortune</title>
+  <title th:text="${title}">Totonoi Compass</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -31,7 +31,7 @@
         <div class="flex justify-between items-center h-16">
           <h1 class="text-2xl font-bold text-white">
             <a th:href="@{/fortune}" class="hover:text-primary transition-colors duration-200">
-              サウナ占い
+              Totonoi Compass
             </a>
           </h1>
           <nav th:if="${#authorization.expression('isAuthenticated()')}" class="flex items-center space-x-6">
@@ -56,7 +56,7 @@
 
     <footer class="bg-white border-t border-gray-200 mt-auto">
       <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
-        <p class="text-center text-sm text-gray-500">&copy; 2025 サウナ占いアプリ</p>
+        <p class="text-center text-sm text-gray-500">&copy; 2025 Totonoi Compass</p>
       </div>
     </footer>
   </div>
