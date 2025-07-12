@@ -1,5 +1,5 @@
 # Java 21（Eclipse Temurinディストリビューション）を使用
-FROM eclipse-temurin:21-jdk
+FROM maven:3.9.6-eclipse-temurin-21
 
 # 作業ディレクトリを /app に設定
 WORKDIR /app
