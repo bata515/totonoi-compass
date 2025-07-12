@@ -8,7 +8,7 @@ WORKDIR /app
 COPY . /app
 
 # Maven Wrapperを使ってビルド（テストはスキップ）
-RUN ./mvnw clean package -DskipTests
+RUN chmod +x mvnw && ./mvnw clean package -DskipTests
 
 # Spring Boot アプリケーションが使うポート
 ENV JAVA_TOOL_OPTIONS="-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:5005"
