@@ -1,15 +1,15 @@
-# サウナ占いアプリ
+# Totonoi Compass
 ## 概要
-優柔不断なあなたへ、占い形式でランダムにサウナを提案するアプリケーションです。Let the saunas fortune decide where we go today!
+優柔不断なあなたへ、提案形式でランダムにサウナを提案するアプリケーションです。Let the saunas fortune decide where we go today!
 
 ## 目的/背景
-優柔不断な人が今日いくサウナをランダムに占いっぽく決めてあげたい！
+優柔不断な人が今日いくサウナをランダムに提案してあげたい！
 
 ## 画面、機能要件
 - ログイン画面
-  - メールアドレス、パスワードを入力して認証OKだったら、占い画面へ遷移する
-- 占い画面(ログイン後)
-  - 占うボタンを押下すると結果画面へ遷移する
+  - メールアドレス、パスワードを入力して認証OKだったら、提案画面へ遷移する
+- 提案画面(ログイン後)
+  - 提案ボタンを押下すると結果画面へ遷移する
   - いい感じのサウナ画像を埋め込んで、おしゃれなレイアウトにしたい
 - 結果画面
   - ランダムにサウナを表示してあげる(サウナ名、ホームページのURL、行ったことある/行ったことない のフラグ的なもの)
@@ -76,7 +76,7 @@ Thymeleafをビューとして使用するクラシカルなWebアプリケー�
 ### 要認証
 | 画面名         | URL (GET)                      | URL (POST/PUT/DELETE)                         | Controller#メソッド                                     | Thymeleafテンプレート        | 概要                                     |
 | -------------- | ------------------------------ | ---------------------------------- | ------------------------------------------------------------ | ---------------------------- | ---------------------------------------- |
-| 占い画面       | `/fortune`                     | `/fortune/result`                  | `FortuneController#readFortunePage`, `FortuneController#fortune`      | `fortune.html`, `result.html`| 占い機能を提供する（ログイン後のトップページ） |
+| 提案画面       | `/fortune`                     | `/fortune/result`                  | `FortuneController#readFortunePage`, `FortuneController#fortune`      | `fortune.html`, `result.html`| 提案機能を提供する（ログイン後のトップページ） |
 | サウナ一覧（管理） | `/saunas`                | -                                  | `SaunasController#readSaunasPage`                                       | `list.html`            | 登録済みサウナの一覧表示と管理           |
 | サウナ登録画面   | `/saunas/new`            | `/saunas/create`             | `SaunasController#readCreateSaunaPage`, `SaunasController#createSauna`    | `form.html`            | 新規サウナを登録する                     |
 | サウナ編集画面   | `/saunas/{id}/edit`      | `/saunas/{id}/update`        | `SaunasController#readEditSaunaPage`, `SaunasController#updateSauna`   | `form.html`            | 既存のサウナ情報を更新する               |
@@ -86,8 +86,8 @@ Thymeleafをビューとして使用するクラシカルなWebアプリケー�
 `src/main/resources/templates/`
 - `signup.html`: 新規登録ページ
 - `login.html`: ログインページ
-- `fortune.html`: 占いページ
-- `result.html`: 占い結果ページ
+- `fortune.html`: 提案ページ
+- `result.html`: 提案結果ページ
 - `list.html`: サウナ一覧（管理）ページ
 - `form.html`: サウナ登録・編集共通フォームページ
 - `layout.html`: 全ページ共通のレイアウト（ヘッダー、フッターなど）

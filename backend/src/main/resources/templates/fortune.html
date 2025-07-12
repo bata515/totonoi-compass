@@ -1,44 +1,36 @@
 <!DOCTYPE html>
 <html lang="ja" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout}">
 <div layout:fragment="content">
-    <div class="text-center">
-        <!-- ヘッダー部分 -->
-        <div class="mb-8">
-            <h2 class="text-4xl font-bold text-gray-900 mb-4">
-                <span th:text="${username}"></span>さん、<br class="sm:hidden">今日のサウナを占おう！
-            </h2>
-            <p class="text-lg text-gray-600">あなたにぴったりのサウナをお教えします</p>
-        </div>
-
-        <!-- サウナ画像とオーバーレイ -->
-        <div class="relative mb-8 mx-auto max-w-2xl">
-            <div class="relative overflow-hidden rounded-2xl shadow-2xl">
-                <img src="/images/sauna.jpg" alt="サウナイメージ" 
-                     class="w-full h-64 sm:h-80 object-cover">
-                <div class="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent"></div>
-                
-                <!-- オーバーレイテキスト -->
-                <div class="absolute bottom-6 left-6 right-6 text-white">
-                    <p class="text-lg font-medium drop-shadow-lg">
-                        運命のサウナが待っています
-                    </p>
-                </div>
+    <!-- 背景画像付きのコンテナ（レイアウトの余白を除去） -->
+    <div class="fixed inset-0 bg-cover bg-center bg-no-repeat" 
+         style="background-image: url('/images/sauna.jpg'); top: 64px;">
+        <!-- 背景オーバーレイ -->
+        <div class="absolute inset-0 bg-black/40"></div>
+        
+        <!-- コンテンツ -->
+        <div class="relative z-10 text-center px-4 py-16 min-h-full flex flex-col justify-center">
+            <!-- ヘッダー部分 -->
+            <div class="mb-12">
+                <h2 class="text-4xl font-bold text-white mb-4 drop-shadow-lg">
+                    <span th:text="${username}"></span>さん、<br class="sm:hidden">今日どんなサウナに行く？
+                </h2>
+                <p class="text-xl text-white/90 drop-shadow-md">あなたにぴったりのサウナをお教えします</p>
             </div>
-        </div>
 
-        <!-- 占いボタン -->
-        <div class="flex justify-center">
-            <form th:action="@{/fortune/result}" method="post">
-                <button type="submit" 
-                        class="bg-gradient-to-r from-primary to-blue-600 text-white text-xl font-bold py-4 px-12 rounded-full shadow-lg hover:from-blue-600 hover:to-blue-700 transform hover:scale-105 transition-all duration-300 focus:outline-none focus:ring-4 focus:ring-primary focus:ring-opacity-50">
-                    <span class="flex items-center">
-                        <svg class="w-6 h-6 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path>
-                        </svg>
-                        占う！
-                    </span>
-                </button>
-            </form>
+            <!-- 提案ボタン -->
+            <div class="flex justify-center">
+                <form th:action="@{/fortune/result}" method="post">
+                    <button type="submit" 
+                            class="bg-gradient-to-r from-primary to-blue-600 text-white text-xl font-bold py-4 px-12 rounded-full shadow-2xl hover:from-blue-600 hover:to-blue-700 transform hover:scale-105 transition-all duration-300 focus:outline-none focus:ring-4 focus:ring-white/30 backdrop-blur-sm">
+                        <span class="flex items-center">
+                            <svg class="w-6 h-6 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path>
+                            </svg>
+                            提案！
+                        </span>
+                    </button>
+                </form>
+            </div>
         </div>
     </div>
 </div>
