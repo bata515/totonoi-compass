@@ -15,14 +15,14 @@ import org.springframework.web.bind.annotation.PostMapping;
 import java.util.Optional;
 
 @Controller
-public class FortuneController {
+public class SuggestController {
     @Autowired
     ReadSaunaService readSaunaService;
     @Autowired
     ReadUserService readUserService;
 
-    @GetMapping("/fortune")
-    public String readFortunePage(Model model) {
+    @GetMapping("/suggest")
+    public String readSuggestPage(Model model) {
         // Spring Securityのセキュリティコンテキストから認証情報を取得
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         // 認証されたユーザーのメールアドレスを取得
@@ -32,17 +32,17 @@ public class FortuneController {
         this.readUserService.readUserByMail(userMail);
 
         model.addAttribute("username", userViewModel.getFamilyName()+userViewModel.getFirstName());
-        return "fortune";
+        return "suggest";
     }
 
-    @PostMapping("/fortune/result")
-    public String fortune(Model model) {
+    @PostMapping("/suggest/result")
+    public String suggest(Model model) {
         // Spring Securityのセキュリティコンテキストから認証情報を取得
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         // 認証されたユーザーのメールアドレスを取得
         String userMail = authentication.getName();
 
-        Optional<SaunaViewModel> saunaViewModelOptional = readSaunaService.readRandomSaunaByUserMail(userMail);
+        Optional<SaunaViewModel> saunaViewModelOptional = this.readSaunaService.readRandomSaunaByUserMail(userMail);
 
         if (saunaViewModelOptional.isEmpty()) {
             model.addAttribute("error", "サウナの情報が見つかりませんでした。");
