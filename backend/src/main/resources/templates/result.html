@@ -105,14 +105,18 @@
 
     <!-- アクションボタン -->
     <div class="flex justify-center">
-      <a th:href="@{/fortune}" 
-         class="inline-flex items-center bg-gradient-to-r from-primary to-blue-600 text-white font-medium py-3 px-8 rounded-full shadow-lg hover:from-blue-600 hover:to-blue-700 transform hover:scale-105 transition-all duration-300 focus:outline-none focus:ring-4 focus:ring-primary focus:ring-opacity-50">
-        <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path>
-        </svg>
-        もう一度提案する
-      </a>
+      <form th:action="@{/fortune/result}" method="post">
+        <button type="submit"
+                class="inline-flex items-center bg-gradient-to-r from-primary to-blue-600 text-white font-medium py-3 px-8 rounded-full shadow-lg hover:from-blue-600 hover:to-blue-700 transform hover:scale-105 transition-all duration-300 focus:outline-none focus:ring-4 focus:ring-primary focus:ring-opacity-50">
+          <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path>
+          </svg>
+          もう一度提案する
+        </button>
+      </form>
     </div>
+
   </div>
 </div>
 
