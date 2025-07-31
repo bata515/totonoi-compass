@@ -23,7 +23,6 @@ on:
 jobs:
   # テストジョブの定義
   test:
-    # ジョブの名前
     name: Run Application Service Tests
     
     # どのOS環境で実行するかを指定（Ubuntu最新版を使用）
